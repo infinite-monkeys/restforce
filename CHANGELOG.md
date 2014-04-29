@@ -1,3 +1,11 @@
+## 1.4.3.im1 (Apr 25, 2014)
+
+*   Fixed an issue with HTTP 401 responses from streaming setup. Closes #104 by malavbhavsar, inspired by #103 by gbutt
+
+## 1.4.3
+
+## 1.4.2
+
 ## 1.4.1 (Jun 18, 2013)
 
 *   Fixed a bug with HTTP 413 responses #75 @patronmanager
