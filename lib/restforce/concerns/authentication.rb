@@ -6,7 +6,9 @@ module Restforce
       def authenticate!
         raise AuthenticationError, 'No authentication middleware present' unless authentication_middleware
         middleware = authentication_middleware.new nil, self, options
-        middleware.authenticate!
+        response = middleware.authenticate!
+        @identity_url = response['id']
+        response
       end
 
       # Internal: Determines what middleware will be used based on the options provided
