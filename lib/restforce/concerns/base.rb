@@ -4,6 +4,7 @@ module Restforce
   module Concerns
     module Base
       attr_reader :options
+      attr_reader :identity_url
 
       # Public: Creates a new client instance
       #
@@ -73,7 +74,7 @@ module Restforce
       end
 
       def inspect
-        "#<#{self.class} @options=#{@options.inspect}>"
+        "#<#{self.class} @options=#{@options.inspect} @identity_url=#{@identity_url.inspect}>"
       end
     end
   end
