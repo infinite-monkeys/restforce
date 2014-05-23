@@ -414,6 +414,21 @@ client.get_deleted('Account', Time.local(2015,8,18), Time.local(2015,8,19))
 
 * * *
 
+### process\_approval
+
+```ruby
+# Given an item to Submit, Approve, or Reject in an approval process
+client.process_approval('Submit', {"contextId" => "001D000000I8mImIAJ", "nextApproverIds" => ["005D00000015rY9"], "comments" => "this is a test"})
+# => [#<Restforce::Mash actorIds=["00Gf0000000Wbi2EAC"] entityId="001D000000I8mImIAJ" errors=nil instanceId="04gf00000001IopAAE" instanceStatus="Pending" newWorkitemIds=["04if00000001ltTAAQ"] success=true>] 
+
+# The Approve and Reject methods need a work item ("04if00000001ltTAAQ"), not
+# the original item ("001D000000I8mImIAJ")
+client.process_approval("Reject", {"contextId"=> "04if00000001ltTAAQ", "comments" => "nope"})
+# TODO: grab an example reject response, and an approve submission/response with next approver specified
+```
+
+* * *
+
 ### authenticate!
 
 Performs an authentication and returns the response. In general, calling this
