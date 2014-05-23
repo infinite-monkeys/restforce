@@ -3,6 +3,9 @@ module Restforce
     module Base
 
       attr_reader :options
+      def identity_url
+        @options[:identity_url]
+      end
 
       # Public: Creates a new client instance
       #
