@@ -25,6 +25,7 @@ module Restforce
       @options[:instance_url] = response.body['instance_url']
       @options[:oauth_token]  = response.body['access_token']
       @options[:authentication_callback].call(response.body) if @options[:authentication_callback]
+      @options[:identity_url] = response.body['id']
       response.body
     end
 
