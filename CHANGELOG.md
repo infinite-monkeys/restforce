@@ -1,3 +1,7 @@
+## 1.5.1.im2 (Jan 25, 2015) (previously 1.4.3.im2 (May 23, 2014))
+
+*   Added rough support for process approvals (new in v30.0)
+
 ## 1.5.1 (Nov 27, 2014)
 
 *   Looser restrictions on hashie gem #123 @zenchild
