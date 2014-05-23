@@ -11,7 +11,6 @@ module Restforce
 
         middleware = authentication_middleware.new nil, self, options
         response = middleware.authenticate!
-        @identity_url = response['id']
         response
       end
 

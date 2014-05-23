@@ -34,6 +34,7 @@ module Restforce
       @options[:oauth_token]  = response.body['access_token']
 
       @options[:authentication_callback]&.call(response.body)
+      @options[:identity_url] = response.body['id']
 
       response.body
     end
