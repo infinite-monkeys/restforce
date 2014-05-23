@@ -1,6 +1,10 @@
+## 1.4.3.im2 (May 23, 2014)
+
+*   Added rough support for process approvals (new in v30.0)
+
 ## 1.4.3.im1 (Apr 25, 2014)
 
-*   Fixed an issue with HTTP 401 responses from streaming setup. Closes #104 by malavbhavsar, inspired by #103 by gbutt
+*   Fixed an issue with HTTP 401 responses from streaming setup. Closes #104 by malavbhavsar, inspired by #103 by gbutt (FIXME: breaks tests)
 
 ## 1.4.3
 
