@@ -287,7 +287,16 @@ client.process_approval('Submit', {"contextId" => "001D000000I8mImIAJ", "nextApp
 # The Approve and Reject methods need a work item ("04if00000001ltTAAQ"), not
 # the original item ("001D000000I8mImIAJ")
 client.process_approval("Reject", {"contextId"=> "04if00000001ltTAAQ", "comments" => "nope"})
-# TODO: grab an example reject response, and an approve submission/response with next approver specified
+# => [#<Restforce::Mash actorIds=nil entityId="001D000000I8mImIAJ" errors=nil instanceId="04gf00000001FicAAE" instanceStatus="Rejected" newWorkitemIds=[] success=true>] 
+
+client.process_approval("Approve", {"contextId"=> "04if000000025EEAAY", "comments" => "this record is approved", "nextApproverIds" => ["005D00000015rY9"]})
+# => [#<Restforce::Mash actorIds=["00G40000001NEP9EAO"] entityId="00Qf0000005W6PVEA0" errors=nil instanceId="04gf00000001K29AAE" instanceStatus="Pending" newWorkitemIds=["04if000000025EOAAY"] success=true>] 
+
+# Here is an example query for pulling the work item IDs assigned to a user/queue
+client.query("Select Id, ActorId, Actor.Name, Actor.Email, CreatedDate, ProcessInstance.Status, ProcessInstance.TargetObjectId, ProcessInstance.TargetObject.Name from ProcessInstanceWorkitem where ActorId = '00Gf0000000Wbi2'")
+# => #<Restforce::Collection:0x00000001ff8f10 @client=#<Restforce::Data::Client @options={...}>, @raw_page={"totalSize"=>1, "done"=>true, "records"=>[{"attributes"=>{"type"=>"ProcessInstanceWorkitem", "url"=>"/services/data/v30.0/sobjects/ProcessInstanceWorkitem/04if00000001gM4AAI"}, "ActorId"=>"00Gf0000000Wbi2EAC", "Actor"=>{"attributes"=>{"type"=>"Name", "url"=>"/services/data/v30.0/sobjects/Group/00Gf0000000Wbi2EAC"}, "Name"=>"Site Test", "Email"=>nil}, "CreatedDate"=>"2014-05-05T08:11:18.000+0000", "Id"=>"04if00000001gM4AAI", "ProcessInstance"=>{"attributes"=>{"type"=>"ProcessInstance", "url"=>"/services/data/v30.0/sobjects/ProcessInstance/04gf00000001FicAAE"}, "Status"=>"Pending", "TargetObjectId"=>"00Qf0000005W6PVEA0", "TargetObject"=>{"attributes"=>{"type"=>"Name", "url"=>"/services/data/v30.0/sobjects/Lead/00Qf0000005W6PVEA0"}, "Name"=>"test_d_parameter@example.com"}}}]}> 
+
+
 ```
 
 * * *
