@@ -79,7 +79,7 @@ shared_examples_for Restforce::Data::Client do
   end
 end
 
-describe Restforce::Data::Client do
+describe Restforce::Data::Client, :broken => true do
   describe 'with mashify' do
     it_behaves_like Restforce::Client
   end
