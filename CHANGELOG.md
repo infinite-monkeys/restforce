@@ -1,3 +1,7 @@
+## 3.1.0.im3 (May 2, 2019) (previously 1.5.1.im2 (Jan 25, 2015), previously 1.4.3.im2 (May 23, 2014))
+
+*   Added rough support for process approvals (new in v30.0)
+
 ## 3.1.0 (Aug 16, 2018)
 
 * Add support for replaying missed messages when using the Salesforce Streaming API (@andreimaxim, @drteeth, @panozzaj)
