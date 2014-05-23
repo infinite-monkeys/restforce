@@ -445,6 +445,28 @@ shared_examples_for Restforce::AbstractClient do
     subject { client.query('SELECT some, fields FROM object') }
     it { should be_an Enumerable }
   end
+
+  describe '.process_approval' do
+    before(:all) { Restforce.configure do |config| config.api_version = "30.0" end }
+    after(:all) { Restforce.configure do |config| config.api_version = "26.0" end }
+    context 'Submit' do
+      requests 'process/approvals', :method => :post, :fixture => 'process_approval_submit'
+      subject { client.process_approval('Submit', {"contextId" => "001D000000I8mImIAJ", "nextApproverIds" => ["005D00000015rY9"], "comments" => "this is a test"}) }
+      it { should be_a Array }
+    end
+
+    context 'Approve' do
+      requests 'process/approvals', :method => :post, :fixture => 'process_approval_approve'
+      subject { client.process_approval('Approve', {"contextId" => "001D000000I8mImIAJ", "nextApproverIds" => ["005D00000015rY9"], "comments" => "this is a test"}) }
+      it { should be_a Array }
+    end
+
+    context 'Reject' do
+      requests 'process/approvals', :method => :post, :fixture => 'process_approval_reject'
+      subject { client.process_approval('Reject', {"contextId" => "001D000000I8mImIAJ", "nextApproverIds" => ["005D00000015rY9"], "comments" => "this is a test"}) }
+      it { should be_a Array }
+    end
+  end
 end
 
 describe Restforce::AbstractClient do

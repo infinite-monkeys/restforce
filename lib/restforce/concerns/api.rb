@@ -472,6 +472,30 @@ module Restforce
         api_get(path).body
       end
 
+      # Public: Operations related to Record approvals.
+      # New in api_version >= 30.0?
+      #
+      # http://www.salesforce.com/us/developer/docs/api_rest/Content/dome_process_approvals_submit.htm
+      # http://www.salesforce.com/us/developer/docs/api_rest/Content/dome_process_approvals_approve.htm
+      # http://www.salesforce.com/us/developer/docs/api_rest/Content/dome_process_approvals_reject.htm
+      #
+      # action -> actionType (Submit, Approve, Reject)
+      # sample:
+      # 1.9.3-p392 :008 > client.process_approval("Submit", {"contextId"=> "00Qf0000005CmGY"})
+      #  => [#<Restforce::Mash actorIds=["00Gf0000000Wbi2EAC"] entityId="00Qf0000005CmGYEA0" errors=nil instanceId="04gf00000001IopAAE" instanceStatus="Pending" newWorkitemIds=["04if00000001ltTAAQ"] success=true>]
+      # 1.9.3-p392 :038 >   client.process_approval("Reject", {"contextId"=> "04if00000001ltTAAQ", "comments" => "nope"})
+      #
+      def process_approval(action, attrs)
+        version_guard(30.0) do
+          path = "process/approvals/"
+
+          attrs["actionType"] = action
+          params = { "requests" => [ attrs ] }
+
+          api_post(path, params).body
+        end
+      end
+
       private
 
       # Internal: Returns a path to an api endpoint
